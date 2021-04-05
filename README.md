@@ -88,11 +88,6 @@ Browsers (latest stable versions):
 Good to have:
 - Canary versions of Chrome and/or Edge
 
-Static web server with HTML5 navigation support.
-Recommended:
-https://www.npmjs.com/package/serve
-https://www.npmjs.com/package/superstatic
-
 ### Front-end stack description
 
 We will use a simple blog application written in Angular. Production builds will be provided for the each step, so there is no need to set up Angular infrastructure (but it’s possible to set up the full build, if you wish). We will run some simple commands using npm scripts.
