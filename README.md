@@ -24,6 +24,20 @@ The web platform is versatile, capable, and can go far beyond the browser tab wh
 
 # Let's start!
 
+## Your trainer: Maxim Salnikov
+
+<img src="https://github.com/webmaxru/pwa-workshop-docs/raw/main/images/maxim.salnikov.jpg" width="200">
+
+_Developer Engagement Lead at Microsoft_
+
+Maxim Salnikov is an Oslo-based cloud and web front-end geek with a strong passion for the developer community building. He architects and builds complex web applications since the end of the last century, and has extensive experience with all aspects of web platform focusing on the apps managing real-time data from IoT devices, and Progressive Web Apps. He is a Google Developer Expert in Web Technologies & IoT, and a former Microsoft MVP in Development Technologies.
+
+Maxim is a founder and active contributor to two conferences: Mobile Era and ngVikings - Nordics’ main conferences for mobile and Angular developers respectively. Also, he leads Norway’s largest meetups dedicated to web front-end and mobile: Angular Oslo, Mobile Meetup, Oslo PWA, Framsia.
+
+Maxim is passionate about sharing his web platform experience and knowledge with the community. He travels extensively for visiting developers events and speaking/training at conferences and meetups around the world.
+
+Invite me to speak at your event using this form: http://bit.ly/maxim-salnikov-speaker-request
+
 ## Schedule
 
 * 11:00 AM - 12:30 PM - Session 1
@@ -37,7 +51,7 @@ The web platform is versatile, capable, and can go far beyond the browser tab wh
 ## Content
 
 ### Session 1
-* Setting the goal
+* Setting up the environment
 * What are Progressive Web Apps (PWA)
 * The service worker API is the backbone of PWA functionality
 * Step 0 - Classic web application
@@ -58,6 +72,59 @@ The web platform is versatile, capable, and can go far beyond the browser tab wh
 * Questions and answers
 
 ---
+
+## Setting up the environment
+
+### Tools and browsers
+
+We need a PC or Mac with installed (latest stable versions):
+- Git
+- Node 
+- NPM
+
+Browsers (latest stable versions):
+- Browsers Chrome and/or Edge, optionally - Firefox
+
+Good to have:
+- Canary versions of Chrome and/or Edge
+
+Static web server with HTML5 navigation support.
+Recommended:
+https://www.npmjs.com/package/serve
+https://www.npmjs.com/package/superstatic
+
+### Front-end stack description
+
+We will use a simple blog application written in Angular. Production builds will be provided for the each step, so there is no need to set up Angular infrastructure (but it’s possible to set up the full build, if you wish). We will run some simple commands using npm scripts.
+
+Follow the instructions: https://github.com/webmaxru/angular-pwa/tree/workbox-step0
+
+### Backend stack description
+
+We will use a hosted Ghost engine as a backend.
+
+### Using Lighthouse - our main metric of app’s progressiveness
+
+Lighthouse analyzes web apps and web pages, collecting modern performance metrics and insights on developer best practices.
+
+https://github.com/GoogleChrome/lighthouse
+
+There are two options:
+- As of version 60 Chromium engine now has a built in lighthouse test which is accessible on the Audits tab of the developer tools. DevTools -> Lighthouse -> PWA -> Generate report
+- CLI tool
+```
+npm install -g lighthouse
+lighthouse https://airhorner.com --view
+```
+
+The `--view` parameter will open the resulting report in a new browser window.
+
+Test some websites using Lighthouse:
+- https://airhorner.com/
+- https://smashingmagazine.com
+- Your company’s website?
+
+
 
 ## Theoretical part
 
@@ -88,6 +155,7 @@ The practical part of the workshop consists of modernizing the front-end part of
 - Offline readiness of the application shell
 - Caching responses from API and CDN using appropriate strategies
 - Interactive version upgrade process
+- Preserving data submitted by the user in offline mode for auto-resending it to the backend after getting internet connectivity
 - Installing the app on devices
 
 ### Step 0 - Classic web application
