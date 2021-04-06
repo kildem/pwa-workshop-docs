@@ -44,6 +44,8 @@ Create `src/service-worker.js` file:
 ```javascript
 import { precacheAndRoute } from "workbox-precaching";
 
+// PRECACHING
+
 // Precache and serve resources from __WB_MANIFEST array
 precacheAndRoute(self.__WB_MANIFEST);
 ```
@@ -100,6 +102,8 @@ Generated dist/prog-web-news/sw.js, which will precache 9 files, totaling 941910
 And `dist/prog-web-news/sw.js`file was created:
 ```javascript
 import { precacheAndRoute } from "workbox-precaching";
+
+// PRECACHING
 
 // Precache and serve resources from __WB_MANIFEST array
 precacheAndRoute([{"revision":"698fd10d556c218fb428b2f8913b3f36","url":"favicon.ico"},{"revision":"37606ee110a75e14c0972f9e52f16e67","url":"index.html"},{"revision":null,"url":"styles.c2761edff7776e1e48a3.css"},{"revision":null,"url":"main.34827f39578469476a05.js"},{"revision":null,"url":"polyfills.25b2e0ae5a439ecc1193.js"},{"revision":null,"url":"runtime.359d5ee4682f20e936e9.js"},{"revision":"b6f448e81e669bc05b47e542ef085ada","url":"assets/img/favicon.png"},{"revision":"f5fd664cc80a6c77d6c79e5bd2653426","url":"assets/img/logo.png"},{"revision":"33c3a22c05e810d2bb622d7edb27908a","url":"assets/img/pwa-logo.png"}]);
@@ -166,7 +170,7 @@ Finally, we can integrate all these steps into the overall application build by 
   },
 ```
 
-- By running `npm run build-sw` we'll generate a ready-to-go service worker
+- By running `npm run build-sw` we'll generate a ready-to-go service worker. We'll call this **"rebuld service worker"** and use it often in this workshop)
 - By running `npm run build-pwa` we'll build a full application including service worker (we will not use this command in this workshop)
 
 ### Build a service worker and test the application
@@ -195,6 +199,68 @@ Switch to offline mode and refresh a page to make sure the application shell was
 
 But neither API (blog posts) nor CDN (fonts, font icons, avatars) data yet - we'll fix it in the next steps!
 ![Workbox](images/step2-4.png)
+
+### Fixing single page application routing
+
+Our app is a classic SPA where a webserver (called "Serve" in our case) redirects to `index.html` all navigation requests without corresponding resources deployed. And then Javascript-based router (Angular's in our case) decides which component to load and render.
+
+Open http://localhost:5000/about url - it works fine. Now switch offline mode and reload the page. The direct url http://localhost:5000/about will not work while opening http://localhost:5000/ and picking "About" from menu works fine. The issue is: Workbow knows nothing about `/about` url (and all other urls which we didn't list explicitly in the array of the resources to precache). What if we mimic the webserver behaviour and serve `index.html` for "unknown" urls and let the application router decide what to do? Luckily, there is a special method in Workbox to fix it.
+
+1) Update `service-worker.js`:
+
+```javascript
+import { precacheAndRoute, createHandlerBoundToURL } from "workbox-precaching";
+import { NavigationRoute, registerRoute } from "workbox-routing";
+
+// PRECACHING
+
+// Precache and serve resources from __WB_MANIFEST array
+precacheAndRoute(self.__WB_MANIFEST);
+
+// NAVIGATION ROUTING
+
+// This assumes /index.html has been precached.
+const navHandler = createHandlerBoundToURL("/index.html");
+const navigationRoute = new NavigationRoute(navHandler, {
+  denylist: [new RegExp("/out-of-spa/")], // Also might be specified explicitly via allowlist
+});
+registerRoute(navigationRoute);
+```
+
+In this code, by using `denylist` here we want to illustrate the way to exclude a particular url pattern from SPA navigation - it might be useful in some scenarios.
+
+2) Rebuild service worker
+
+3) Open http://localhost:5000/ in online mode, switch to offline and open http://localhost:5000/about. It should work now!
+
+### Some extra housekeeping
+
+Let's add couple more functionality pieces to your service worker:
+- To illustrate some configuration possibilities, let's give custom names to our caches
+- To simplify service worker lifecycle, let's claim the clients (tabs) as soon as possible and skip activation waiting
+
+1) Add to `service-worker.js`:
+
+```javascript
+import { setCacheNameDetails, clientsClaim } from "workbox-core";
+
+// SETTINGS
+
+// Claiming control to start runtime caching asap
+clientsClaim();
+
+// Use to update the app after user triggered refresh
+self.skipWaiting();
+
+// Setting custom cache names
+setCacheNameDetails({ precache: "wb6-precache", runtime: "wb6-runtime" });
+```
+
+2) Rebuild service worker
+
+3) Open http://localhost:5000/ and look at the cache name:
+![Workbox](images/step2-5.png)
+
 
 ## Resources and references
 
