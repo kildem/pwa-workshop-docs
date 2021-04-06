@@ -257,5 +257,36 @@ Open the browser
 http://localhost:5000/
 
 The result:
+![App](/images/app-home.png)
+
+Let’s check it with Lighthouse:
+DevTools -> Lighthouse -> Progressive Web App -> Generate report
+![App](/images/lighthouse-step0.png)
+
+Could be better!
+
+We start adding PWA features by implementing an offline-ready application shell
+
+### Explaining the idea
+
+An application shell is the minimal HTML, CSS, and JavaScript powering a user interface. The application shell should:
+- load fast
+- be cached
+- dynamically display content
+
+An application shell is the secret to reliably good performance. Think of your app's shell like the bundle of code you'd publish to an app store if you were building a native app. It's the load needed to get off the ground, but might not be the whole story. It keeps your UI local and pulls in content dynamically through an API.
+
+Let's define absolute minimum of the files for our application shell. In `dist\prog-web-news` folder:
+- index.html
+- main. * .js
+- polyfills. * .js
+- runtime. * .js
+- styles. * .css
+- assets\img\pwa-logo.png
+
+In the next step, we'll create and register a service worker to cache and serve these resources.
+
+Next steps:
+[Step 1](practice-step1.md)
 
 
