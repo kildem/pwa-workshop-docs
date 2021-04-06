@@ -4,7 +4,10 @@ We want all resources for our app to be cached by the service worker, and ensure
 
 Service workers are very manual. They don’t provide any automation for accomplishing this goal, but they do provide a way for us to accomplish it ourselves.
 
-In `dist\prog-web-news` folder create `service-worker.js` file:
+:exclamation: In this step we only work with the files in `dist\prog-web-news` folder :exclamation:
+
+1) Create `service-worker.js` file:
+
 ```javascript
 const PRECACHE = "precache-v1";
 const RUNTIME = "runtime";
@@ -86,7 +89,8 @@ self.addEventListener("fetch", (event) => {
 
 ```
 
-Add service worker registration code to `index.html`
+2) Add service worker registration code to `index.html`
+
 ```html
 <script>
 ```
@@ -124,8 +128,8 @@ if ('serviceWorker' in navigator) {
 ```
 
 To mimic version update do the following:
-1) Iterate number in `const PRECACHE = "precache-v1";` after `v`
-2) Add this line to `index.html` and also iterate number there
+- Iterate number in `const PRECACHE = "precache-v1";` after `v`
+- Add this line to `index.html` and also iterate number there
 ```html
 <div style="position: absolute; top: 23px; right: 16px; z-index: 1; color: #fff">v2</div>
 ```
