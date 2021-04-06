@@ -17,7 +17,7 @@
 Let's go back to the application shell versioning and make this process interactive. To have a handy hook for the moment when it's time to display a prompt in our application code, we'll change the service worker registration code from the native to the one offered by `workbox-window` module.
 
 1) In `index.html` replace the whole service worker registration code to this one wrapped by `<script type="module">...</script>`:
-```
+```javascript
 import {Workbox} from 'https://storage.googleapis.com/workbox-cdn/releases/6.1.2/workbox-window.prod.mjs';
 
 // Feature detection
