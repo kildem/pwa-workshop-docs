@@ -18,7 +18,6 @@ Step description
 
 ## Resources and references
 
-- https://developers.google.com/web/updates/2015/11/app-shell
-- https://developers.google.com/web/fundamentals/architecture/app-shell
+- https://docs.microsoft.com/en-us/microsoft-edge/progressive-web-apps-chromium/experimental-features/#features-that-are-available-to-test
 
 ## Thank you for today!
