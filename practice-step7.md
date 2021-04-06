@@ -12,14 +12,16 @@
 - **Step 7 - Making app installable**
 - [Review of other APIs to build a native-like app](other-apis.md)
 
-# Step 7 - Classic web application
+# Step 7 - Making app installable
 
 Step description
 
 ## Resources and references
 
-- https://developers.google.com/web/updates/2015/11/app-shell
-- https://developers.google.com/web/fundamentals/architecture/app-shell
+- https://developer.mozilla.org/en-US/docs/Web/Manifest
+- https://developers.google.com/web/updates/2017/02/improved-add-to-home-screen
+- https://developers.google.com/web/fundamentals/app-install-banners/promoting-install-mobile
+
 
 ## If something went wrong
 ```
@@ -27,4 +29,4 @@ git checkout wb-step7
 ```
 
 ## Next step
-[Other APIs](other-apis.md)
+[Review of other APIs to build a native-like app](other-apis.md)
