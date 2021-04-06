@@ -227,7 +227,7 @@ const navigationRoute = new NavigationRoute(navHandler, {
 registerRoute(navigationRoute);
 ```
 
-In this code, by using `denylist` here we want to illustrate the way to exclude a particular url pattern from SPA navigation - it might be useful in some scenarios.
+In this code, by using `denylist` we just illustrate the way to exclude a particular url pattern from SPA navigation - it might be useful in some scenarios.
 
 2) Rebuild service worker
 
