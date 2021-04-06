@@ -23,7 +23,7 @@ Still, we can use the power of Service Worker API and great developer experience
 
 Before jumping into the code, let's think about what kind of the strategies might be the best fits for particular pieces of data loaded from API by our blog application. To simplify, let's assume we only have four kinds of the blog data:
 - Blog post list. It might be quite a dynamic data: we don't want to let our user to miss the recent post just because the JSON with the list items was loaded from the cache (where it was placed during the previous visit). So we want "network first" strategy for the post lists. If the network is not available, we'll try our luck with cache.
-- Blog post details. Ones created and posted, this kind of data is normally not updated later. So for this case, to delight our users by the immediate loading of the previously visited blog posts, we can go for the "cache first" strategy. But with Workbox, we can even use its more advanced version calles "stale while revalidate". It will load the resource from cache (if it's there) and at the same time will try to download its updated version from the network. And if there is an update, Workbox will replace the version in cache so the next time the updated content will be served. Also, we'll limit the cache validity period by 7 days using `ExpirationPlugin`.
+- Blog post details. Ones created and posted, this kind of data is normally not updated later. So for this case, to delight our users by the immediate loading of the previously visited blog posts, we can go for the "cache first" strategy. But with Workbox, we can even use its more advanced version calles "stale while revalidate". It will load the resource from cache (if it's there) and at the same time will try to download its updated version from the network. And if there is an update, Workbox will replace the version in cache so the next time the updated content will be served. Also, we'll limit the cache validity period by 7 days using `ExpirationPlugin`. When using this plugin, you have to define a custom cache name using `cacheName` property.
 - Avatars from the 3rd-party service Gravatar. The most conservative data: the image with particular address always remains the same so we can safely choose "cache first" strategy to improve performance and save user's bandwidth. Another techinical detail: the responses Workbox receives from the Gravatar are _opaque_, they have response status equal to zero. To be able to cache them, we have to provide zero as a valid status for caching using `CacheableResponsePlugin`. Also, we'll use an alternative notation for specifying the route pattern.
 - Blog post images. Quite similar to avatars - "cache first", but let's add extra condition: we'll cache maximum 10 images to not overuse the device's cache.
 
@@ -48,6 +48,7 @@ import { CacheableResponsePlugin } from "workbox-cacheable-response";
 registerRoute(
   new RegExp("https://progwebnews-app.azurewebsites.net.*content/posts/slug.*"),
   new StaleWhileRevalidate({
+    cacheName: "wb6-post",
     plugins: [
       new ExpirationPlugin({
         // Only cache requests for a week
