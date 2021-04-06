@@ -1,6 +1,6 @@
 ### Workshop contents
 
-- [Intro and Setting up the environment](README.md)
+- [Intro and setting up the environment](README.md)
 - [What are Progressive Web Apps (PWA). The service worker API is the backbone of PWA functionality.](theory.md)
 - **Step 0 - Classic web application**
 - [Step 1 - App shell with a handmade service worker](practice-step1.md)
@@ -14,7 +14,64 @@
 
 # Step 0 - Classic web application
 
-Step description
+Clone the repo
+```
+git clone https://github.com/webmaxru/prog-web-news
+```
+
+By default you will have “main” branch active. Let’s switch to wb-step0 branch:
+```
+git checkout wb-step0
+```
+
+Install the packages
+```
+npm install
+```
+
+For the local debugging we'll use a static web server called [Serve](https://www.npmjs.com/package/serve). It's preconfigured via `serve.json` file. Run the server
+```
+npx serve
+```
+
+Alternatively you can install and run it globally:
+```
+npm install serve -g
+serve
+```
+
+Open the browser
+http://localhost:5000/
+
+The result:
+![App](/images/app-home.png)
+
+Let’s check it with Lighthouse:
+DevTools -> Lighthouse -> Progressive Web App -> Generate report
+![App](/images/lighthouse-step0.png)
+
+Could be better!
+
+We start adding PWA features by implementing an offline-ready application shell
+
+### Explaining the idea
+
+An application shell is the minimal HTML, CSS, and JavaScript powering a user interface. The application shell should:
+- load fast
+- be cached
+- dynamically display content
+
+An application shell is the secret to reliably good performance. Think of your app's shell like the bundle of code you'd publish to an app store if you were building a native app. It's the load needed to get off the ground, but might not be the whole story. It keeps your UI local and pulls in content dynamically through an API.
+
+Let's define absolute minimum of the files for our application shell. In `dist\prog-web-news` folder:
+- index.html
+- main. * .js
+- polyfills. * .js
+- runtime. * .js
+- styles. * .css
+- assets\img\pwa-logo.png
+
+In the next step, we'll create and register a service worker to cache and serve these resources.
 
 ## Resources and references
 
