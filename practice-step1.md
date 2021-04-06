@@ -224,8 +224,6 @@ self.addEventListener("activate", (event) => {
 
 ## Resources and references
 
-- https://developers.google.com/web/updates/2015/11/app-shell
-- https://developers.google.com/web/fundamentals/architecture/app-shell
 - https://developer.mozilla.org/en-US/docs/Web/API/Cache
 - https://developers.google.com/web/fundamentals/getting-started/primers/service-workers?hl=en
 - https://developers.google.com/web/tools/chrome-devtools/progressive-web-apps
