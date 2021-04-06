@@ -1,3 +1,18 @@
+### Workshop contents
+
+- [Intro and setting up the environment](README.md)
+- [What are Progressive Web Apps (PWA). The service worker API is the backbone of PWA functionality.](theory.md)
+- [Step 0 - Classic web application](practice-step0.md)
+- **Step 1 - App shell with a handmade service worker**
+- [Step 2 - App shell with Workbox](practice-step2.md)
+- [Step 3 - Runtime caching with Workbox](practice-step3.md)
+- [Step 4 - Caching missing pieces with the Workbox recipes](practice-step4.md)
+- [Step 5 - Improving app update flow](practice-step5.md)
+- [Step 6 - Replaying requests made offline](practice-step6.md)
+- [Step 7 - Making app installable](practice-step7.md)
+- [Review of other APIs to build a native-like app](other-apis.md)
+
+
 # Step 1 - App shell with a handmade service worker
 
 We want all resources for our app to be cached by the service worker, and ensure they’re sent to the page without hitting the network on subsequent visits. Service workers are very manual. They don’t provide any automation for accomplishing this goal, but they do provide a way for us to accomplish it ourselves.
@@ -200,7 +215,7 @@ self.addEventListener("activate", (event) => {
 });
 ```
 
-2) Repeat the update application flow to make sure that all tabs closing is no longer required.
+2) Repeat the update application flow to make sure that all tabs closing is no longer required. But you still need 2 page refreshes to see te next version.
 
 ## Why implementing own service worker could be more complex than expected
 
@@ -209,19 +224,19 @@ self.addEventListener("activate", (event) => {
 
 ## Resources and references
 
-https://developers.google.com/web/updates/2015/11/app-shell
-https://developers.google.com/web/fundamentals/architecture/app-shell
-https://developer.mozilla.org/en-US/docs/Web/API/Cache
-https://developers.google.com/web/fundamentals/getting-started/primers/service-workers?hl=en
-https://developers.google.com/web/tools/chrome-devtools/progressive-web-apps
-https://bitsofco.de/the-service-worker-lifecycle/
-https://developers.google.com/web/fundamentals/instant-and-offline/service-worker/lifecycle
-https://dbwriteups.wordpress.com/2015/11/12/service-workers-part-1-introduction/
+- https://developers.google.com/web/updates/2015/11/app-shell
+- https://developers.google.com/web/fundamentals/architecture/app-shell
+- https://developer.mozilla.org/en-US/docs/Web/API/Cache
+- https://developers.google.com/web/fundamentals/getting-started/primers/service-workers?hl=en
+- https://developers.google.com/web/tools/chrome-devtools/progressive-web-apps
+- https://bitsofco.de/the-service-worker-lifecycle/
+- https://developers.google.com/web/fundamentals/instant-and-offline/service-worker/lifecycle
+- https://dbwriteups.wordpress.com/2015/11/12/service-workers-part-1-introduction/
 
 ## If something went wrong
 ```
 git checkout wb-step1
 ```
 
-## Next steps
-[Step2](practice-step2.md)
+## Next step
+[Step 2 - App shell with Workbox](practice-step2.md)
