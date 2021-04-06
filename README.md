@@ -92,8 +92,6 @@ Good to have:
 
 We will use a simple blog application written in Angular. Production builds will be provided for the each step, so there is no need to set up Angular infrastructure (but it’s possible to set up the full build, if you wish). We will run some simple commands using npm scripts.
 
-Follow the instructions: https://github.com/webmaxru/angular-pwa/tree/workbox-step0
-
 ### Backend stack description
 
 We will use a hosted Ghost engine as a backend.
@@ -224,4 +222,40 @@ We've covered the most basic and commonly used features that can dramatically im
 - Registering file types
 - File system access
 - Access to hardware capabilities
+
+# Practical part
+
+## Step 0
+
+Clone the repo
+```
+git clone https://github.com/webmaxru/prog-web-news
+```
+
+By default you will have “main” branch active. Let’s switch to wb-step0 branch:
+```
+git checkout wb-step0
+```
+
+Install the packages
+```
+npm install
+```
+
+For the local debugging we'll use a static web server called [Serve](https://www.npmjs.com/package/serve). It's preconfigured via `serve.json` file. Run the server
+```
+npx serve
+```
+
+Alternatively you can install and run it globally:
+```
+npm install serve -g
+serve
+```
+
+Open the browser
+http://localhost:5000/
+
+The result:
+
 
