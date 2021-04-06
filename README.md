@@ -1,3 +1,17 @@
+### Workshop contents
+
+- **Intro and setting up the environment**
+- [What are Progressive Web Apps (PWA). The service worker API is the backbone of PWA functionality.](theory.md)
+- [Step 0 - Classic web application](practice-step0.md)
+- [Step 1 - App shell with a handmade service worker](practice-step1.md)
+- [Step 2 - App shell with Workbox](practice-step2.md)
+- [Step 3 - Runtime caching with Workbox](practice-step3.md)
+- [Step 4 - Caching missing pieces with the Workbox recipes](practice-step4.md)
+- [Step 5 - Improving app update flow](practice-step5.md)
+- [Step 6 - Replaying requests made offline](practice-step6.md)
+- [Step 7 - Making app installable](practice-step7.md)
+- [Review of other APIs to build a native-like app](other-apis.md)
+
 # PWA Workshop, 2021 edition
 
 The web platform is versatile, capable, and can go far beyond the browser tab while keeping its open and universal nature. We call “progressive” the web apps built using the latest browser APIs to achieve a new level of user experience. In this framework-agnostic workshop, we’ll convert a “classic” web application to progressive using Workbox 6 - the latest version of the service worker automation library. So you can do the same with an app you or your company is developing now!
@@ -117,30 +131,6 @@ Test some websites using Lighthouse:
 - https://smashingmagazine.com
 - Your company’s website?
 
-
-
-## Theoretical part
-
-### What are Progressive Web Apps (PWA)
-
-Putting aside the marketing component of this popular term, let's look at the technical details: what exactly makes an application progressive, and why PWA can be a new era in the development of the web.
-
-- Prerequisites for the occurrence
-- Formal definition
-- Benefits for users and developers
-- Opportunities and installation of a web application are the two main vectors of PWA development
-- Current state of the art with support across platforms, operating systems, and browsers
-
-### 2. The service worker API is the backbone of PWA functionality
-
-Most of the capabilities of progressive web applications are implemented using the Service Worker API. To understand what exactly we will automate using Workbox, we will study the basic ideas of this API and write a service worker ourselves.
-
-- Similarities and differences with other browser workers
-- Service worker life cycle
-- Main events
-- Registration in the application
-- Debugging in the browser
-
 ## Practical part
 
 The practical part of the workshop consists of modernizing the front-end part of a web application from a "regular" one to a PWA. To make the project realistic, the application was built using of the popular front-end frameworks (Angular), but knowledge of this framework and its specific tools is not required: all the necessary builds will be provided. In addition, all the techniques, methods, practices studied in the workshop, and the code from the examples ia applicable to any web application. During the practical part, the following functionality will be added to the application:
@@ -152,62 +142,54 @@ The practical part of the workshop consists of modernizing the front-end part of
 - Installing the app on devices
 
 ### Step 0 - Classic web application
-* Describing the application
-* Defining application shell
+
+- Describing the application
+- Defining application shell
 
 ### Step 1 - App shell with a handmade service worker
 
-* Creating a service worker file with empty event listeners
-* Implementing "install" listener
-* Implementing "fetch" listener
-* Implementing "activate" listener
-* Preparing "fetch" listener for extendability
-* Registering a service worker in the application
-* Listing possible pitfalls of this naive implementation
+- Creating a service worker file with empty event listeners
+- Implementing "install" listener
+- Implementing "fetch" listener
+- Implementing "activate" listener
+- Preparing "fetch" listener for extendability
+- Registering a service worker in the application
+- Listing possible pitfalls of this naive implementation
 
 ### Step 2 - App shell with Workbox
 
 After getting acquainted with the API of the service worker, we realized that to implement even the basic offline readiness of the application, a fairly wide range of knowledge and skills of working with service workers and not only is required. The Workbox library provides a comfortable abstraction layer for automating common network tasks for service workers.
 
-- Functionality and construction principle of Workbox
-- Choice of tools
+- Functionality and advantages of Workbox
+- Setting up infrastructure
 - Offline readiness of an application in a service worker using Workbox methods
 - Integration with application build
-
-* Introducing Workbox and setting up its infrastructure
-* Registering a service worker in the app
-
-* Building an application shell
-* Implementing a smart app update flow
-* Introducing caching strategies for runtime data
-
 
 ### Step 3 - Runtime caching with Workbox
 
 The Workbox library allows you to extend the service worker and PWA as a whole both in width, adding functionality beyond caching, and in depth, fine-tuning the behavior of the base modules.
 
 - Runtime caching, strategies and plugins
-- 
-- 
+
 ### Step 4 - Caching missing pieces with the Workbox recipes
 
-- Recipes - the next level of abstraction in Workbox 6
+- Recipes - the next level of abstraction in Workbox
 
 ### Step 5 - Improving app update flow
 
 - Workbox-window module for registering a service worker in an application
-- Online app version update
-- 
+- Interactive app version update
+
 ### Step 6 - Replaying requests made offline
 
 - Background sync
 - Expanding functionality with our own plugins and strategies
-- 
+
 ### Step 7 - Making app installable
 
 To give our web application "official" PWA status, we need to add one more feature - the ability to install on users' devices.
 
-- Web Manifest: Tasks, BOM
+- Web App Manifest
 - Tools for generating web manifest and graphic assets
 - Connecting to the app and testing
 - Different approaches to help with installation in different browsers
@@ -223,70 +205,5 @@ We've covered the most basic and commonly used features that can dramatically im
 - File system access
 - Access to hardware capabilities
 
-# Practical part
-
-## Step 0
-
-Clone the repo
-```
-git clone https://github.com/webmaxru/prog-web-news
-```
-
-By default you will have “main” branch active. Let’s switch to wb-step0 branch:
-```
-git checkout wb-step0
-```
-
-Install the packages
-```
-npm install
-```
-
-For the local debugging we'll use a static web server called [Serve](https://www.npmjs.com/package/serve). It's preconfigured via `serve.json` file. Run the server
-```
-npx serve
-```
-
-Alternatively you can install and run it globally:
-```
-npm install serve -g
-serve
-```
-
-Open the browser
-http://localhost:5000/
-
-The result:
-![App](/images/app-home.png)
-
-Let’s check it with Lighthouse:
-DevTools -> Lighthouse -> Progressive Web App -> Generate report
-![App](/images/lighthouse-step0.png)
-
-Could be better!
-
-We start adding PWA features by implementing an offline-ready application shell
-
-### Explaining the idea
-
-An application shell is the minimal HTML, CSS, and JavaScript powering a user interface. The application shell should:
-- load fast
-- be cached
-- dynamically display content
-
-An application shell is the secret to reliably good performance. Think of your app's shell like the bundle of code you'd publish to an app store if you were building a native app. It's the load needed to get off the ground, but might not be the whole story. It keeps your UI local and pulls in content dynamically through an API.
-
-Let's define absolute minimum of the files for our application shell. In `dist\prog-web-news` folder:
-- index.html
-- main. * .js
-- polyfills. * .js
-- runtime. * .js
-- styles. * .css
-- assets\img\pwa-logo.png
-
-In the next step, we'll create and register a service worker to cache and serve these resources.
-
-Next steps:
-[Step 1](practice-step1.md)
-
-
+## Next step
+[What are Progressive Web Apps (PWA). The service worker API is the backbone of PWA functionality.](theory.md)
