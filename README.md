@@ -195,15 +195,5 @@ To give our web application "official" PWA status, we need to add one more featu
 - Different approaches to help with installation in different browsers
 - Placing PWAs in App Stores
 
-## Review of other APIs to build a native-like app
-
-We've covered the most basic and commonly used features that can dramatically improve the user experience. But this is far from a complete set of APIs and specifications from the ever-growing family of PWA capabilities of the web platform. For the sake of completeness, consider some of them.
-
-- Background download
-- Periodic background sync
-- Registering file types
-- File system access
-- Access to hardware capabilities
-
 ## Next step
 [What are Progressive Web Apps (PWA). The service worker API is the backbone of PWA functionality.](theory.md)
