@@ -14,6 +14,16 @@
 
 # Other APIs
 
+## Review of other APIs to build a native-like app
+
+We've covered the most basic and commonly used features that can dramatically improve the user experience. But this is far from a complete set of APIs and specifications from the ever-growing family of PWA capabilities of the web platform. For the sake of completeness, consider some of them.
+
+- Background download
+- Periodic background sync
+- Registering file types
+- File system access
+- Access to hardware capabilities
+
 We continue with the slidedeck https://slides.com/webmax/introducing-pwa/
 
 ## Ways to stay connected
