@@ -14,7 +14,9 @@
 
 # Step 2 - App shell with Workbox
 
-[Workbox](https://developers.google.com/web/tools/workbox) is a library that bakes in a set of best practices and removes the boilerplate every developer writes when working with service workers. It's a great service worker networking tasks automation tool because of:
+After getting acquainted with the API of the service worker, we realized that to implement even the basic offline readiness of the application, a fairly wide range of knowledge and skills of working with service workers and not only is required. The [Workbox](https://developers.google.com/web/tools/workbox) library provides a comfortable abstraction layer for automating common network tasks for service workers. It also contains a set of best practices and removes the boilerplate every developer writes when working with service workers.
+
+Workbox is a great service worker networking tasks automation tool because of:
 
 - Optimal level of abstraction
 - Declarativeness where appropriate
