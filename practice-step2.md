@@ -117,7 +117,7 @@ We need some more processing of the service worker file before the deployment: n
 
 You can [use your favorite bundler](https://developers.google.com/web/tools/workbox/guides/using-bundlers) for this task. In this workshop, we'll use Rollup with some plugins. They are already installed for you, so this command is just for your reference:
 ```
-npm install rollup, rollup-plugin-node-resolve, rollup-plugin-replace, rollup-plugin-terser
+npm install rollup rollup-plugin-node-resolve rollup-plugin-replace rollup-plugin-terser
 ```
 
 Create a Rollup configuration file `rollup.config.js` in the application root folder:
