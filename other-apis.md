@@ -12,9 +12,7 @@
 - [Step 7 - Making app installable](practice-step7.md)
 - **Review of other APIs to build a native-like app**
 
-# Other APIs
-
-## Review of other APIs to build a native-like app
+# Review of other APIs to build a native-like app
 
 We've covered the most basic and commonly used features that can dramatically improve the user experience. But this is far from a complete set of APIs and specifications from the ever-growing family of PWA capabilities of the web platform. For the sake of completeness, consider some of them.
 
