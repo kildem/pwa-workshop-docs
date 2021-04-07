@@ -14,13 +14,100 @@
 
 # Step 7 - Making app installable
 
-Step description
+App Manifest enables features such as add to home screen and splash screens. Manifest files are supported in Chrome, Edge, Firefox, UC Browser, Opera, and the Samsung browser. Safari has partial support.
+
+### Creating and validating Web App Manifest
+
+1) Generate icons and a manifest template using one of the online services. We'll use https://manifest-gen.netlify.app/. Parameters:
+- App Name: Progressive Web News
+- Short Name: Prog Web News
+- Theme Color: #9c27b0
+- Background Color: #fafafa
+- Display Mode: standalone
+- Use this image as a source for the icons: https://raw.githubusercontent.com/webmaxru/prog-web-news/wb-step0/src/assets/img/favicon.png
+3) Copy the images from archive you received to `dist/prog-web-news/assets/icons` folder
+4) In the archive you will also find `manifest.json` file. Based on it, we'll create a file called `app.webmanifest` (using this extension to follow the specification) and put it into `dist/prog-web-news/assets` folder:
+```json
+{
+  "name": "Progressive Web News",
+  "short_name": "Prog Web News",
+  "theme_color": "#9c27b0",
+  "background_color": "#fafafa",
+  "display": "standalone",
+  "orientation": "portrait",
+  "scope": "/",
+  "start_url": "/",
+  "icons": [
+    {
+      "src": "icons/icon-72x72.png",
+      "sizes": "72x72",
+      "type": "image/png"
+    },
+    {
+      "src": "icons/icon-96x96.png",
+      "sizes": "96x96",
+      "type": "image/png"
+    },
+    {
+      "src": "icons/icon-128x128.png",
+      "sizes": "128x128",
+      "type": "image/png"
+    },
+    {
+      "src": "icons/icon-144x144.png",
+      "sizes": "144x144",
+      "type": "image/png"
+    },
+    {
+      "src": "icons/icon-152x152.png",
+      "sizes": "152x152",
+      "type": "image/png"
+    },
+    {
+      "src": "icons/icon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "icons/icon-384x384.png",
+      "sizes": "384x384",
+      "type": "image/png"
+    },
+    {
+      "src": "icons/icon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
+```
+4) Add manifest linking code to the `<head>` block of `index.html`:
+```html
+<link rel='manifest' href='/assets/app.webmanifest'>
+```
+5) Open http://localhost:5000/ and open Dev Tools -> Application -> Manifest tab to check if everything looks correctly.
+
+### Web app installation
+
+Now, our web app meets [installability criteria](https://web.dev/install-criteria/) for at least Chromium-based browsers. In the right of the address bar you will find an icon button to install it. In Microsoft Edge:
+![Edge](images/step7-1.png)
+In Google Chrome:
+![Chrome](images/step7-3.png)
+
+After you install the application, it will work in the separate window. You can uninstall it from the context menu placed in the title bar of this window:
+![Uninstall](images/step7-2.png)
+
+
 
 ## Resources and references
 
 - https://developer.mozilla.org/en-US/docs/Web/Manifest
-- https://developers.google.com/web/updates/2017/02/improved-add-to-home-screen
+- https://web.dev/add-manifest/
 - https://developers.google.com/web/fundamentals/app-install-banners/promoting-install-mobile
+- https://www.dunplab.it/web-app-manifest-generator (alternative Web App Manifest generator)
+- https://www.pwabuilder.com/ Web App Manifest and Service Worker generator by Microsoft
+- https://web.dev/maskable-icon/
+- https://web.dev/install-criteria/
 
 
 ## If something went wrong
