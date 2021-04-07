@@ -140,6 +140,7 @@ Let's fix the missing parts.
 4) (Optionally) To fix `http`->`https` redirect, we have to deploy our application to the static web apps hosting which supports this feature. For example, [Azure Static Web Apps]()
 
 The final report will look perfect:
+![Report](images/step7-6.png)
 
 
 
