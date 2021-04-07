@@ -178,6 +178,12 @@ To mimic version update do the following:
 
 4) Close the application tab (all tabs with this app if you have multiple ones open) and open http://localhost:5000/ again. You will see v2.
 
+❗❗❗ IMPORTANT ❗❗❗
+
+During this workshop you will need to start a "new life" of the application (including its service worker) many-many-many times. Before each new iteration go to the Dev Tools -> Application -> Storage and click "Clear site data" with all checkboxes below checked.
+
+![Clean](images/clear.png)
+
 ## Changing the lifecycle
 
 It is possible to finetune the service worker lifecycle to activate itself immediately by using `self.skipWaiting()`, and to make it claim the clients (tabs) by using `self.clients.claim()`
