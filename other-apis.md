@@ -14,10 +14,13 @@
 
 # Other APIs
 
-Step description
+We continue with the slidedeck https://slides.com/webmax/introducing-pwa/
 
 ## Resources and references
 
+- https://fugu-tracker.web.app/
+- https://web.dev/fugu-status/
+- https://chromium.googlesource.com/chromium/src/+/lkgr/docs/security/permissions-for-powerful-web-platform-features.md
 - https://docs.microsoft.com/en-us/microsoft-edge/progressive-web-apps-chromium/experimental-features/#features-that-are-available-to-test
 
 ## Thank you for today!
