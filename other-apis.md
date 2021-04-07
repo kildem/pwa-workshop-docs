@@ -16,6 +16,11 @@
 
 We continue with the slidedeck https://slides.com/webmax/introducing-pwa/
 
+## Ways to stay connected
+
+- Twitter https://twitter.com/webmaxru
+- LinkedIn https://www.linkedin.com/in/webmax/
+
 ## Resources and references
 
 - https://fugu-tracker.web.app/
