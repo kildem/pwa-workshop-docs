@@ -90,12 +90,56 @@ App Manifest enables features such as add to home screen and splash screens. Man
 ### Web app installation
 
 Now, our web app meets [installability criteria](https://web.dev/install-criteria/) for at least Chromium-based browsers. In the right of the address bar you will find an icon button to install it. In Microsoft Edge:
+
 ![Edge](images/step7-1.png)
+
 In Google Chrome:
+
 ![Chrome](images/step7-3.png)
 
 After you install the application, it will work in the separate window. You can uninstall it from the context menu placed in the title bar of this window:
+
 ![Uninstall](images/step7-2.png)
+
+There is also an alternative way to install the application - with using the browser menu:
+
+![Alt](images/step7-4.png)
+
+### Improved installation dialogue
+
+Soon, it will become possible to use extra fields of the Web App Manifest to improve the user experience: `description` and `screenshots`. [Currently](https://twitter.com/ChromiumDev/status/1376472636058927104), these fields are in use only in Chrome for Android. The experimental flag chrome://flags/#mobile-pwa-install-use-bottom-sheet flag must be enabled in Chrome 90. This experience will come to the desktops also.
+
+![Alt](images/webappinstall.jpg)
+
+### Fixing last details of the Lighthouse audit
+
+If we generate PWA report now, we'll see the following:
+
+![Report](images/step7-5.png)
+
+Let's fix the missing parts.
+
+1) To support the address bar theming in Android-based browsers we have to provide one more meta tag in the `<head>` of `index.html`. We'll use the color from `theme_color` property of Web App Manifest:
+```html
+<meta name="theme-color" content="#9c27b0"/>
+```
+2) When iOS Safari users add PWAs to their home screens, the icon that appears is called the Apple touch icon. We have to specify what icon your app should use by including one more property to the `<head>` of `index.html`:
+```html
+<link rel="apple-touch-icon" href="/assets/icons/icon-192x192.png">
+```
+3) To make sure our icon looks great on newer Android devices (without white background added), we have to mark one icon as [maskable](https://web.dev/maskable-icon-audit/) by adding `purpose` property equals `any maskable`. In `app.webmanifest` edit:
+```json
+{
+  "src": "icons/icon-144x144.png",
+  "sizes": "144x144",
+  "type": "image/png",
+  "purpose": "any maskable"
+},
+```
+ 
+4) (Optionally) To fix `http`->`https` redirect, we have to deploy our application to the static web apps hosting which supports this feature. For example, [Azure Static Web Apps]()
+
+The final report will look perfect:
 
 
 
