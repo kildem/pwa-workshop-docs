@@ -203,12 +203,15 @@ Open <http://localhost:5000/>
 ❗ Before further testing don't forget to "Clear site data" ❗
 
 Workbox provides detailed logging:
+
 ![Workbox](images/step2-2.png)
 
 Switch to offline mode and refresh a page to make sure the application shell was properly cached. Workbox serves the precached resources:
+
 ![Workbox](images/step2-3.png)
 
 But neither API (blog posts) nor CDN (fonts, font icons, avatars) data yet - we'll fix it in the next steps!
+
 ![Workbox](images/step2-4.png)
 
 ### Fixing single page application routing
@@ -271,6 +274,7 @@ setCacheNameDetails({ precache: "wb6-precache", runtime: "wb6-runtime" });
 2) Rebuild service worker
 
 3) Open <http://localhost:5000/> and look at the cache name:
+
 ![Workbox](images/step2-5.png)
 
 ## Resources and references
