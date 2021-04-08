@@ -12,12 +12,11 @@
 - [Step 7 - Making app installable](practice-step7.md)
 - [Review of other APIs to build a native-like app](other-apis.md)
 
-
 # Step 1 - App shell with a handmade service worker
 
-We want all resources for our app to be cached by the service worker, and ensure they’re sent to the page without hitting the network on subsequent visits. Service workers are very manual. They don’t provide any automation for accomplishing this goal, but they do provide a way for us to accomplish it ourselves.
+We want all resources for our app to be cached by the service worker and ensure they're sent to the page without hitting the network on subsequent visits. Service workers are very manual. They don't provide any automation for accomplishing this goal, but they do provide a way for us to accomplish it ourselves.
 
-:exclamation: In this step we only work with the files in `dist\prog-web-news` folder :exclamation:
+:exclamation: In this step, we only work with the files in `dist\prog-web-news` folder :exclamation:
 
 ## Setting up offline-ready app shell
 
@@ -104,7 +103,7 @@ self.addEventListener("fetch", (event) => {
 
 ```
 
-2) Add service worker registration code to `index.html` before closing `</body>` tag. The code schould be wrapped by `<script>...</script>`
+2) Add service worker registration code to `index.html` before the closing `</body>` tag. The code should be wrapped by `<script>...</script>`
 
 ```javascript
 // Feature detection
@@ -137,14 +136,15 @@ if ('serviceWorker' in navigator) {
 ```
 
 3) Add a line to mimic app version changes - to `index.html` before closing `</body>` tag
+
 ```html
 <div style="position: absolute; top: 23px; right: 16px; z-index: 1; color: #fff">v1</div>
 ```
 
-4) Now open http://localhost:5000/
+4) Now, open <http://localhost:5000/>
 ![App](images/step1-1.png)
 
-Service worker is running but not controlling the tab yet
+The service worker is running but not controlling the tab yet
 
 5) Refresh the page
 
@@ -156,7 +156,7 @@ Now, "Clients" property appeared - service worker is fully controlling the page
 
 Cache storage now contains both precached and runtime-cached resources
 
-6) Switch to Offline mode (you can do it either in the application tab or in Network tab)
+6) Switch to Offline mode (you can do it either in the application tab or in the Network tab)
 
 ![App](images/step1-4.png)
 
@@ -164,23 +164,25 @@ Cache storage now contains both precached and runtime-cached resources
 
 ## Maintaining app versions
 
-To mimic version update do the following:
+To mimic version update, do the following:
 
-1) Iterate the number in our fake `<div>` in `index.html` 
+1) Iterate the number in our fake `<div>` in `index.html`
+
 ```html
 <div style="position: absolute; top: 23px; right: 16px; z-index: 1; color: #fff">v2</div>
 ```
-2) To precache a new version we have to invoke `install` event of the service worker. Browser will call it for the updated (byte-different) service worker. In many cases the service worker will be updated because of the updated list of the resources to precache (for example if there are hashsums in the filenames). But we'll mimic it by iterating number in `const PRECACHE = "precache-v1";` after `v`.
 
-3) Refresh the page. Again. And again. You will still see v1 in the header. Because of the service worker lifecycle, the new service worker is in waiting stage and will only replace the old one after all tabs with this application were closed.
+2) To precache a new version, we have to invoke `install` event of the service worker. The browser will call it for the updated (byte-different) service worker. In many cases, the service worker will be updated because of the updated list of the resources to precache (for example, if there are hashsums in the filenames). But we'll mimic it by iterating the number in `const PRECACHE = "precache-v1";` after `v`.
+
+3) Refresh the page. Again. And again. You will still see v1 in the header. Because of the service worker lifecycle, the new service worker is in the waiting stage and will only replace the old one after all tabs with this application were closed.
 
 ![App](images/step1-5.png)
 
-4) Close the application tab (all tabs with this app if you have multiple ones open) and open http://localhost:5000/ again. You will see v2.
+4) Close the application tab (all tabs with this app if you have multiple ones open) and open <http://localhost:5000/> again. You will see v2.
 
 ❗❗❗ IMPORTANT ❗❗❗
 
-During this workshop you will need to start a "new life" of the application (including its service worker) many-many-many times. Before each new iteration go to the Dev Tools -> Application -> Storage and click "Clear site data" with all checkboxes below checked.
+During this workshop, you will need to start a "new life" of the application (including its service worker) many-many-many times. Before each new iteration, go to the Dev Tools -> Application -> Storage and click "Clear site data" with all checkboxes below checked.
 
 ![Clean](images/clear.png)
 
@@ -221,26 +223,27 @@ self.addEventListener("activate", (event) => {
 });
 ```
 
-2) Repeat the update application flow to make sure that all tabs closing is no longer required. But you still need 2 page refreshes to see te next version.
+2) Repeat the update application flow to make sure that all tabs closing is no longer required. But you still need two page refreshes to see the next version.
 
 ## Why implementing own service worker could be more complex than expected
 
 ![App](images/step1-6.png)
 
-
 ## Resources and references
 
-- https://developer.mozilla.org/en-US/docs/Web/API/Cache
-- https://developers.google.com/web/fundamentals/getting-started/primers/service-workers?hl=en
-- https://developers.google.com/web/tools/chrome-devtools/progressive-web-apps
-- https://bitsofco.de/the-service-worker-lifecycle/
-- https://developers.google.com/web/fundamentals/instant-and-offline/service-worker/lifecycle
-- https://dbwriteups.wordpress.com/2015/11/12/service-workers-part-1-introduction/
+- <https://developer.mozilla.org/en-US/docs/Web/API/Cache>
+- <https://developers.google.com/web/fundamentals/getting-started/primers/service-workers?hl=en>
+- <https://developers.google.com/web/tools/chrome-devtools/progressive-web-apps>
+- <https://bitsofco.de/the-service-worker-lifecycle/>
+- <https://developers.google.com/web/fundamentals/instant-and-offline/service-worker/lifecycle>
+- <https://dbwriteups.wordpress.com/2015/11/12/service-workers-part-1-introduction/>
 
 ## If something went wrong
-```
+
+```console
 git checkout wb-step1
 ```
 
 ## Next step
+
 [Step 2 - App shell with Workbox](practice-step2.md)

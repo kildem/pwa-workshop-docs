@@ -1,4 +1,4 @@
-### Workshop contents
+# Workshop contents
 
 - [Intro and Setting up the environment](README.md)
 - **What are Progressive Web Apps (PWA). The service worker API is the backbone of PWA functionality.**
@@ -12,9 +12,9 @@
 - [Step 7 - Making app installable](practice-step7.md)
 - [Review of other APIs to build a native-like app](other-apis.md)
 
-# What are Progressive Web Apps (PWA). The service worker API is the backbone of PWA functionality.
+## What are Progressive Web Apps (PWA). The service worker API is the backbone of PWA functionality
 
-Putting aside the marketing component of this popular term, let's look at the technical details: what exactly makes an application progressive, and why PWA can be a new era in the development of the web.
+Putting aside the marketing component of this popular term, let's look at the technical details: what exactly makes an application progressive and why PWA can be a new era in the development of the web.
 
 - Prerequisites for the occurrence
 - Formal definition
@@ -32,7 +32,8 @@ Most of the capabilities of progressive web applications are implemented using t
 
 ## Resources and references
 
-- https://slides.com/webmax/introducing-pwa/
+- <https://slides.com/webmax/introducing-pwa/>
 
 ## Next step
+
 [Step 0 - Classic web application](practice-step0.md)

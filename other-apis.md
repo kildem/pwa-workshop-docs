@@ -22,36 +22,38 @@ We've covered the most basic and commonly used features that can dramatically im
 - File system access
 - Access to hardware capabilities
 
-We continue with the slidedeck: https://slides.com/webmax/introducing-pwa/
+We continue with the slidedeck: <https://slides.com/webmax/introducing-pwa/>
 
 ## Ways to stay connected
 
-- Twitter https://twitter.com/webmaxru
-- LinkedIn https://www.linkedin.com/in/webmax/
+- Twitter <https://twitter.com/webmaxru>
+- LinkedIn <https://www.linkedin.com/in/webmax/>
 
 ## Resources and references
 
 ### New PWA features
 
-- https://fugu-tracker.web.app/
-- https://web.dev/fugu-status/
-- https://chromium.googlesource.com/chromium/src/+/lkgr/docs/security/permissions-for-powerful-web-platform-features.md
-- https://docs.microsoft.com/en-us/microsoft-edge/progressive-web-apps-chromium/experimental-features/#features-that-are-available-to-test
+- <https://fugu-tracker.web.app/>
+- <https://web.dev/fugu-status/>
+- <https://chromium.googlesource.com/chromium/src/+/lkgr/docs/security/permissions-for-powerful-web-platform-features.md>
+- <https://docs.microsoft.com/en-us/microsoft-edge/progressive-web-apps-chromium/experimental-features/#features-that-are-available-to-test>
 
 ### Standards and APIs
-- https://github.com/w3c/ServiceWorker
-- https://developer.mozilla.org/en-US/docs/Web/API/Cache
-- https://developer.mozilla.org/en-US/docs/Web/API/Service_Worker_API
+
+- <https://github.com/w3c/ServiceWorker>
+- <https://developer.mozilla.org/en-US/docs/Web/API/Cache>
+- <https://developer.mozilla.org/en-US/docs/Web/API/Service_Worker_API>
 
 ### Cookbooks and guides
-- https://serviceworke.rs/
-- https://developers.google.com/web/fundamentals/primers/service-worker/
-- https://developer.mozilla.org/en-US/docs/Web/API/Service_Worker_API/Using_Service_Workers
-- https://github.com/PWA-POLICE/pwa-bugs
+
+- <https://serviceworke.rs/>
+- <https://developers.google.com/web/fundamentals/primers/service-worker/>
+- <https://developer.mozilla.org/en-US/docs/Web/API/Service_Worker_API/Using_Service_Workers>
+- <https://github.com/PWA-POLICE/pwa-bugs>
 
 ### Collections
-- https://github.com/hemanth/awesome-pwa
-- https://pwa.rocks/
 
+- <https://github.com/hemanth/awesome-pwa>
+- <https://pwa.rocks/>
 
-## Thank you for today!
+## Thank you for today

@@ -17,6 +17,7 @@
 Let's go back to the application shell versioning and make this process interactive. To have a handy hook for the moment when it's time to display a prompt in our application code, we'll change the service worker registration code from the native to the one offered by `workbox-window` module.
 
 1) In `index.html` replace the whole service worker registration code to this one wrapped by `<script type="module">...</script>`:
+
 ```javascript
 import {Workbox} from 'https://storage.googleapis.com/workbox-cdn/releases/6.1.2/workbox-window.prod.mjs';
 
@@ -56,9 +57,10 @@ if ('serviceWorker' in navigator) {
 }
 ```
 
-❗ We use this non-production ready way to use `workbox-window` module only because we don't want to rebuild the application itself furing the workshop. In the real life, you will use it like `import { Workbox } from 'workbox-window';` in your application code to apply a bundler later. See [example for Angular](https://github.com/webmaxru/prog-web-news/blob/main/src/app/app-shell/app-shell.component.ts#L32).
+❗ We use this non-production ready way to use `workbox-window` module only because we don't want to rebuild the application itself in this workshop. In the real-life, you will use it like `import { Workbox } from 'workbox-window';` in your application code to apply a bundler later. See [example for Angular](https://github.com/webmaxru/prog-web-news/blob/main/src/app/app-shell/app-shell.component.ts#L32).
 
 2) In `service-worker.js` add the listener
+
 ```javascript
 // APP SHELL UPDATE FLOW
 
@@ -78,13 +80,14 @@ and disable `skipWaiting()`
 
 3) Rebuild service worker
 
-4) Open http://localhost:5000
+4) Open <http://localhost:5000>
 
-### How to test the interactive update flow
+## How to test the interactive update flow
 
 We have to mimic the application update - we'll use our fake div with "v1" again.
 
 1) Change the v1 to something else in `index.html`
+
 ```html
 <div style="position: absolute; top: 23px; right: 16px; z-index: 1; color: #fff">v2</div>
 ```
@@ -95,20 +98,21 @@ We have to mimic the application update - we'll use our fake div with "v1" again
 
 ![Update](images/step5-1.png)
 
-❗ Using native Javascript `confirm()` method is not a best practice - this modal dialogue breaks the user experience. We use it only for the sake of simplicity. Normally, you will use some subtle, non obtrusive, dismissable UI compoment from your app's design system. Example for Angular material:
+❗ Using native Javascript `confirm()` method is not a best practice - this modal dialogue breaks the user experience. We use it only for the sake of simplicity. Normally, you will use some subtle, non -btrusive, dismissable UI component from your app's design system. Example for Angular material:
 
 ![Update](images/reload.gif)
 
-
 ## Resources and references
 
-- https://developers.google.com/web/tools/workbox/modules/workbox-window
-- https://developers.google.com/web/tools/workbox/guides/advanced-recipes#offer_a_page_reload_for_users
+- <https://developers.google.com/web/tools/workbox/modules/workbox-window>
+- <https://developers.google.com/web/tools/workbox/guides/advanced-recipes#offer_a_page_reload_for_users>
 
 ## If something went wrong
-```
+
+```console
 git checkout wb-step5
 ```
 
 ## Next step
+
 [Step 6 - Replaying requests made offline](practice-step6.md)

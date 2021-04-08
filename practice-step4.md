@@ -16,9 +16,9 @@
 
 In this step, we'll fix a proper offline experience for some parts of our application: fonts (including webfonts responsible for the icons) and blog post images.
 
-❗ It's not the best practice to download fonts from the 3rd-party CDN (compared to self-hosting when you have a chance to inject these resources to the application shell). Anyway, it's good idea to demonstrate how it might work.
+❗ It's not the best practice to download fonts from the 3rd-party CDN (compared to self-hosting when you have a chance to inject these resources into the application shell). Anyway, it's a good idea to demonstrate how it might work.
 
-Both for the fonts and images we can set up combination of the url pattern and strategy using Workbox routing. These rules might be quite cumbersome, especially for the Google Fonts, when you have to process both stylesheet and font files themselves. Workbox offers predefined _recipes_ for these and some other scenarios. The recipes are nothing but higher abstraction methods implemented using Workbox features we went through in the previous steps.
+Both for the fonts and images, we can set up a combination of the url pattern and strategy using Workbox routing. These rules might be quite cumbersome, especially for Google Fonts, when you have to process both stylesheet and font files themselves. Workbox offers predefined _recipes_ for these and some other scenarios. The recipes are nothing but higher abstraction methods implemented using Workbox features we went through in the previous steps.
 
 We can use the recipes as is or configure them by providing some parameters like `maxEntries`, `cachePrefix`, etc.
 
@@ -35,21 +35,24 @@ googleFontsCache({ cachePrefix: "wb6-gfonts" });
 
 imageCache({ cacheName: "wb6-content-images", maxEntries: 10 });
 ```
+
 2) Rebuild service worker
 
-3) Open http://localhost:5000/ in online mode, visit some pages.
+3) Open <http://localhost:5000/> in online mode, visit some pages.
 
 4) Switch to offline to make sure that the website is fully functional.
 ![Offline](images/step4-1.png)
 
 ## Resources and references
 
-- https://developers.google.com/web/tools/workbox/modules/workbox-recipes
+- <https://developers.google.com/web/tools/workbox/modules/workbox-recipes>
 
 ## If something went wrong
-```
+
+```console
 git checkout wb-step4
 ```
 
 ## Next step
+
 [Step 5 - Improving app update flow](practice-step5.md)

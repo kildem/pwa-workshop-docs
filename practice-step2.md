@@ -24,21 +24,24 @@ Workbox is a great service worker networking tasks automation tool because of:
 - Rich functionality out of the box
 - Powerful tooling
 
-It's an open-source project initiated by Google's web devrel team members and widely supported by the developer community. Workbox is a stable, production-ready, well-maintained library. Let's use it!
+It's an open-source project initiated by Google web developer relations team members and widely supported by the developer community. Workbox is a stable, production-ready, well-maintained library. Let's use it!
 
-Workbox can me used in multiple ways:
-- CLI - to generate full service worker from scratch
+Workbox can be used in multiple ways:
+
+- CLI - to generate a full service worker from scratch
 - Webpack plugin
 - Node module
 
-In this workshop, we focus on the last option as it's the most flexible and universal one. It works fine with application written using any framework or no framework at all. It starts with installing `workbox-build` module package but you have it installed initially. So this is just for your reference:
-```
+In this workshop, we focus on the last option as it's the most flexible and universal one. It works fine with an application written using any framework or no framework at all. It starts with installing `workbox-build` module package, but you have it installed initially. So this is just for your reference:
+
+```console
 npm install workbox-build
 ```
-This command installs not only `workbox-build` but all Workbox modules so you don't need to install them separately. Of course, only the code of the modules/methods you _actually_ use in the service worker will get to the production bundle.
 
-### Create a _source_ service worker file
- 
+This command installs not only `workbox-build` but all Workbox modules, so you don't need to install them separately. Of course, only the code of the modules/methods you _actually_ use in the service worker will get to the production bundle.
+
+## Create a _source_ service worker file
+
 We will not deploy our service worker as is since now, we'll process it first (later on that) so it makes sense to keep it in `src` folder of our application.
 
 Create `src/service-worker.js` file:
@@ -52,7 +55,7 @@ import { precacheAndRoute } from "workbox-precaching";
 precacheAndRoute(self.__WB_MANIFEST);
 ```
 
-All we have created in the previous step (and much more!) is done in Workbox by one method - `precacheAndRoute()`. But we have to let Workbox know which files to precache - `self.__WB_MANIFEST` parameter is exactly about that. This parameter (it's an array of the objects) is not just a list of the app shell resources but also their hashsums calculated - to manage cache in a smart way. Before deploying service worker we have to _inject_ this array into `src/service-worker.js` and `workbox-build` module will help us. Since it's a Node module, let's write some Javascript code to run during the application build.
+All we have created in the previous step (and much more!) is done in Workbox by one method - `precacheAndRoute()`. But we have to let Workbox know which files to precache - `self.__WB_MANIFEST` parameter is exactly about that. This parameter (it's an array of the objects) is not just a list of the app shell resources but also their hashsums calculated - to manage cache in a smart way. Before deploying service worker, we have to _inject_ this array into `src/service-worker.js` and `workbox-build` module will help us. Since it's a Node module, let's write some Javascript code to run during the application build.
 
 ### Create Workbox precache array injection script
 
@@ -88,20 +91,22 @@ injectManifest(workboxConfig).then(({ count, size }) => {
 });
 ```
 
-In this file, we call `injectManifest()` method with `workboxConfig` configuration to create _almost_ deployment-ready service worker `dist/prog-web-news/sw.js` from the source file `src/service-worker.js`. The [configuration options](https://developers.google.com/web/tools/workbox/reference-docs/latest/module-workbox-build#.injectManifest) are very flexible. You will easily create the precaching array you need for _your_ application even if it has a complex architecture.
+In this file, we call `injectManifest()` method with `workboxConfig` configuration to create _almost_ deployment-ready service worker `dist/prog-web-news/sw.js` from the source file `src/service-worker.js`. The [configuration options](https://developers.google.com/web/tools/workbox/reference-docs/latest/module-workbox-build#.injectManifest) are very flexible. You will easily create the precaching array you need for _your_ application, even if it has a complex architecture.
 
 ### Run the injection script
 
-```
+```console
 node workbox-inject.js
 ```
 
 You should see the output
-```
+
+```console
 Generated dist/prog-web-news/sw.js, which will precache 9 files, totaling 941910 bytes.
 ```
 
 And `dist/prog-web-news/sw.js`file was created:
+
 ```javascript
 import { precacheAndRoute } from "workbox-precaching";
 
@@ -113,10 +118,11 @@ precacheAndRoute([{"revision":"698fd10d556c218fb428b2f8913b3f36","url":"favicon.
 
 ### Bundling and minifying a service worker
 
-We need some more processing of the service worker file before the deployment: now, we have to bundle it because ES6 imports are not yet supported in service workers. But having this step brings an extra benefit - by bundling we cherry-pick only the code for the methods we _actually use_ from Workbox modules to deploy to production. Also, we'll use [Terser](https://github.com/terser/terser) (as a plugin) to minify the service worker code to follow the modern web development practices.
+We need some more processing of the service worker file before the deployment: now, we have to bundle it because ES6 imports are not yet supported in service workers. But having this step brings an extra benefit - by bundling, we cherry-pick only the code for the methods we _actually use_ from Workbox modules to deploy to production. Also, we'll use [Terser](https://github.com/terser/terser) (as a plugin) to minify the service worker code to follow the modern web development practices.
 
 You can [use your favorite bundler](https://developers.google.com/web/tools/workbox/guides/using-bundlers) for this task. In this workshop, we'll use Rollup with some plugins. They are already installed for you, so this command is just for your reference:
-```
+
+```console
 npm install rollup rollup-plugin-node-resolve rollup-plugin-replace rollup-plugin-terser
 ```
 
@@ -144,22 +150,25 @@ export default {
 ```
 
 To test, run the command
-```
+
+```console
 npx rollup -c
 ```
 
 Now, `dist/prog-web-news/sw.js` looks like we want and ready for deployment:
 ![Minified](images/step2-1.png)
 
-❗ We intentionally generated a _development_ build of Workbox service worker to have an extensive logging in the console. For the production build (no logging, smaller bundle) replace `JSON.stringify('development')` with `JSON.stringify('production')`.
+❗ We intentionally generated a _development_ build of Workbox service worker to have extensive logging in the console. For the production build (no logging, smaller bundle) replace `JSON.stringify('development')` with `JSON.stringify('production')`.
 
-It's very important to strictly follow the steps order:
+It's very important to strictly follow the steps order.
+
 1) Application build. For example, by the framework (we don't run this step in this workshop, a built version checked into the `dist` folder for us)
 2) Precaching list injection
 3) Service worker bundling
 
 Finally, we can integrate all these steps into the overall application build by creating the corresponding commands in `package.json`:
-```
+
+```json
 "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -179,7 +188,7 @@ Finally, we can integrate all these steps into the overall application build by 
 
 Run the command
 
-```
+```console
 npm run build-sw
 ```
 
@@ -189,9 +198,9 @@ Our service worker file name is `sw.js` now, so update the registration in `inde
 navigator.serviceWorker.register('/sw.js')
 ```
 
-Open http://localhost:5000/
+Open <http://localhost:5000/>
 
-❗ Before further testing don't forget to "Clear site data" ❗ 
+❗ Before further testing don't forget to "Clear site data" ❗
 
 Workbox provides detailed logging:
 ![Workbox](images/step2-2.png)
@@ -204,9 +213,9 @@ But neither API (blog posts) nor CDN (fonts, font icons, avatars) data yet - we'
 
 ### Fixing single page application routing
 
-Our app is a classic SPA where a webserver (called "Serve" in our case) redirects to `index.html` all navigation requests without corresponding resources deployed. And then Javascript-based router (Angular's in our case) decides which component to load and render.
+Our app is a classic SPA where a webserver (called "Serve" in our case) redirects to `index.html` all navigation requests without corresponding resources deployed. And then Javascript-based router (by Angular in our case) decides which component to load and render.
 
-Open http://localhost:5000/about url - it works fine. Now switch offline mode and reload the page. The direct url http://localhost:5000/about will not work while opening http://localhost:5000/ and picking "About" from menu works fine. The issue is: Workbow knows nothing about `/about` url (and all other urls which we didn't list explicitly in the array of the resources to precache). What if we mimic the webserver behaviour and serve `index.html` for "unknown" urls and let the application router decide what to do? Luckily, there is a special method in Workbox to fix it.
+Open <http://localhost:5000/about> url, it works fine. Now switch offline mode and reload the page. The direct url <http://localhost:5000/about> will not work while opening <http://localhost:5000/> and picking "About" from the menu works fine. The issue is: Workbow knows nothing about `/about` url (and all other urls which we didn't list explicitly in the array of the resources to precache). What if we mimic the webserver behavior and serve `index.html` for "unknown" urls and let the application router decide what to do? Luckily, there is a special method in Workbox to fix it.
 
 1) Update `service-worker.js`:
 
@@ -233,13 +242,14 @@ In this code, by using `denylist` we just illustrate the way to exclude a partic
 
 2) Rebuild service worker
 
-3) Open http://localhost:5000/ in online mode, switch to offline and open http://localhost:5000/about. It should work now!
+3) Open <http://localhost:5000/> in online mode, switch to offline and open <http://localhost:5000/about>. It should work now!
 
 ### Some extra housekeeping
 
 Let's add couple more functionality pieces to your service worker:
+
 - To illustrate some configuration possibilities, let's give custom names to our caches
-- To simplify service worker lifecycle, let's claim the clients (tabs) as soon as possible and skip activation waiting
+- To simplify the service worker lifecycle, let's claim the clients (tabs) as soon as possible and skip activation waiting
 
 1) Add to `service-worker.js`:
 
@@ -260,21 +270,21 @@ setCacheNameDetails({ precache: "wb6-precache", runtime: "wb6-runtime" });
 
 2) Rebuild service worker
 
-3) Open http://localhost:5000/ and look at the cache name:
+3) Open <http://localhost:5000/> and look at the cache name:
 ![Workbox](images/step2-5.png)
-
 
 ## Resources and references
 
-- https://developers.google.com/web/tools/workbox/guides/configure-workbox
-- https://developers.google.com/web/tools/workbox/modules/workbox-precaching
-- https://developers.google.com/web/tools/workbox/modules/workbox-build
-
+- <https://developers.google.com/web/tools/workbox/guides/configure-workbox>
+- <https://developers.google.com/web/tools/workbox/modules/workbox-precaching>
+- <https://developers.google.com/web/tools/workbox/modules/workbox-build>
 
 ## If something went wrong
-```
+
+```console
 git checkout wb-step2
 ```
 
 ## Next step
+
 [Step 3 - Runtime caching with Workbox](practice-step3.md)
