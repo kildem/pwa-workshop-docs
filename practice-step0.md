@@ -20,7 +20,7 @@ Clone the repo
 git clone https://github.com/webmaxru/prog-web-news
 ```
 
-By default, you will have “main” branch active. Let’s switch to wb-step0 branch:
+By default, you will have “main” branch active. Let's switch to wb-step0 branch:
 
 ```console
 git checkout wb-step0
@@ -49,11 +49,11 @@ Open the browser
 <http://localhost:5000/>
 
 The result:
-![App](/images/app-home.png)
+![App](images/app-home.png)
 
 Let's check it with Lighthouse:
 DevTools -> Lighthouse -> Progressive Web App -> Generate report
-![App](/images/lighthouse-step0.png)
+![App](images/lighthouse-step0.png)
 
 It could be better!
 
