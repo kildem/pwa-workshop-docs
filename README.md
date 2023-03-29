@@ -12,7 +12,7 @@
 - [Step 7 - Making app installable](practice-step7.md)
 - [Review of other APIs to build a native-like app](other-apis.md)
 
-# PWA Workshop, 2023 edition
+# PWA Workshop
 
 The web platform is versatile, capable, and can go far beyond the browser tab while keeping its open and universal nature. We call “progressive” the web apps built using the latest browser APIs to achieve a new level of user experience. In this framework-agnostic workshop, we'll convert a “classic” web application to progressive using Workbox 6 - the latest version of the service worker automation library. So you can do the same with an app you or your company is developing now!
 

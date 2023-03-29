@@ -1,4 +1,4 @@
-# PWA Workshop, 2021 edition
+# PWA Workshop
 
 ## Workshop contents
 
